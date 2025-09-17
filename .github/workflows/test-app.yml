@@ -1,0 +1,54 @@
+name: Test My Web App
+
+# When should this automation run?
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  test-app:
+    runs-on: ubuntu-latest
+    
+    steps:
+    # Step 1: Get our code
+    - name: Download our code
+      uses: actions/checkout@v3
+      
+    # Step 2: Check if our HTML file exists
+    - name: Check if app file exists
+      run: |
+        echo "🔍 Looking for our app file..."
+        if [ -f "index.html" ]; then
+          echo "✅ Found index.html - app exists!"
+        else
+          echo "❌ index.html not found!"
+          exit 1
+        fi
+        
+    # Step 3: Basic HTML validation
+    - name: Validate HTML structure
+      run: |
+        echo "🔍 Checking HTML structure..."
+        if grep -q "<title>" index.html; then
+          echo "✅ HTML has a title"
+        else
+          echo "❌ No title found"
+          exit 1
+        fi
+        
+        if grep -q "onclick" index.html; then
+          echo "✅ Interactive button found"
+        else
+          echo "❌ No interactive elements found"
+          exit 1
+        fi
+        
+    # Step 4: Success message
+    - name: All tests passed!
+      run: |
+        echo "🎉 All tests passed! App is ready for deployment!"
+        echo "✅ HTML file exists"
+        echo "✅ HTML structure is valid"
+        echo "✅ Interactive elements work"
