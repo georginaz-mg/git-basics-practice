@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My First CI/CD App</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 50px;
+            background-color: #f0f0f0;
+        }
+        .button {
+            padding: 20px 40px;
+            font-size: 18px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 20px;
+        }
+        .button:hover {
+            background-color: #0056b3;
+        }
+        .clicked {
+            background-color: #28a745 !important;
+        }
+    </style>
+</head>
+<body>
+    <h1>Welcome to My CI/CD Learning App! 🚀</h1>
+    <p>This simple app will help us learn about automated deployment.</p>
+    
+    <button class="button" onclick="changeColor(this)">
+        Click me to test the app!
+    </button>
+    
+    <div id="status"></div>
+
+    <script>
+        function changeColor(button) {
+            button.classList.add('clicked');
+            button.textContent = 'App is working! ✅';
+            document.getElementById('status').innerHTML = 
+                '<p style="color: green; font-size: 18px;">✅ App test passed! Ready for CI/CD automation.</p>';
+        }
+    </script>
+</body>
+</html>
